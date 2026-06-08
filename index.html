@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="fotos/rb.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Brows — Roberta Brunassi | Reconstrução de Sobrancelhas em 45 Dias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brown:#D9895B;
+      --salmon:#F28B66;
+      --cream:#F8E8D8;
+      --black:#0D0D0D;
+      --darkbr:#b5663a;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--brown);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+
+    /* ── URGENCY ── */
+    .urgency{background:var(--black);color:var(--cream);text-align:center;padding:10px 20px;font-size:.8rem;font-weight:600;letter-spacing:.07em;position:relative;overflow:hidden;z-index:200;}
+    .urgency::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(242,139,102,.25),transparent);animation:sweep 2.8s linear infinite;}
+    @keyframes sweep{to{left:140%;}}
+
+    /* ── HEADER ── */
+    header{position:sticky;top:0;z-index:150;padding:13px 44px;display:flex;justify-content:space-between;align-items:center;background:rgba(217,137,91,.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(13,13,13,.1);}
+    .logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--black);letter-spacing:.05em;}
+    .h-cta{background:var(--black);color:var(--cream);padding:9px 24px;border-radius:50px;font-size:.8rem;font-weight:700;text-decoration:none;transition:transform .25s,box-shadow .25s;letter-spacing:.03em;}
+    .h-cta:hover{transform:scale(1.05);box-shadow:0 4px 24px rgba(13,13,13,.4);}
+
+    /* ════════════════════════════════════
+       ── HERO (completamente redesenhado) ──
+    ════════════════════════════════════ */
+    .hero{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(145deg,#1c0900 0%,#2a1005 25%,#0D0D0D 60%,#100c08 100%);
+    }
+    /* warm glow blobs */
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 65% 70% at 10% 60%,rgba(217,137,91,.22),transparent 65%),
+        radial-gradient(ellipse 50% 55% at 90% 15%,rgba(242,139,102,.14),transparent 60%),
+        radial-gradient(ellipse 40% 40% at 55% 90%,rgba(248,232,216,.06),transparent 55%);
+      pointer-events:none;
+    }
+    /* decorative large brow arch behind */
+    .hero-arch{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(900px,90vw);opacity:.04;pointer-events:none;}
+    /* grain texture overlay */
+    .hero::after{
+      content:'';position:absolute;inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity:.35;pointer-events:none;
+    }
+    #ptc{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+    .pt{position:absolute;border-radius:50%;opacity:0;animation:fpt var(--d) var(--dl) infinite ease-in-out;}
+    @keyframes fpt{0%{opacity:0;transform:translateY(105vh) scale(0)}10%{opacity:.45}90%{opacity:.45}100%{opacity:0;transform:translateY(-15vh) scale(1)}}
+
+    /* ── HERO LEFT (text) ── */
+    .hero-left{
+      position:relative;z-index:2;
+      padding:120px 60px 100px 80px;
+    }
+    .hero-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(217,137,91,.18);
+      border:1px solid rgba(217,137,91,.4);
+      border-radius:50px;
+      padding:7px 16px;
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      color:var(--brown);text-transform:uppercase;
+      margin-bottom:28px;
+      opacity:0;animation:fiu .7s .1s forwards;
+    }
+    .hero-pill-dot{width:6px;height:6px;background:var(--brown);border-radius:50%;animation:pdot 1.4s ease-in-out infinite;}
+    @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+    .h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.6rem,5.5vw,5rem);
+      font-weight:900;line-height:1.06;
+      color:var(--cream);
+      margin-bottom:24px;
+      opacity:0;animation:fiu .8s .25s forwards;
+    }
+    .gt{
+      background:linear-gradient(130deg,#F8E8D8 0%,#D9895B 35%,#F28B66 65%,#F8E8D8 100%);
+      background-size:280%;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:gflow 4.5s ease infinite;
+    }
+    @keyframes gflow{0%,100%{background-position:0%}50%{background-position:100%}}
+    .hero-divider{
+      width:60px;height:2px;
+      background:linear-gradient(90deg,var(--brown),var(--salmon));
+      border-radius:2px;margin:0 0 24px;
+      opacity:0;animation:fiu .7s .4s forwards;
+    }
+    .h-sub{
+      font-size:clamp(.9rem,1.6vw,1.08rem);
+      color:rgba(248,232,216,.72);
+      max-width:460px;line-height:1.8;font-weight:300;
+      margin-bottom:40px;
+      opacity:0;animation:fiu .8s .5s forwards;
+    }
+    .hero-cta-group{opacity:0;animation:fiu .8s .7s forwards;}
+    .btn{
+      display:inline-block;
+      background:linear-gradient(135deg,#D9895B,#F28B66);
+      color:var(--black);padding:17px 44px;border-radius:60px;
+      font-size:1rem;font-weight:800;text-decoration:none;
+      position:relative;overflow:hidden;
+      transition:transform .3s,box-shadow .3s;
+      letter-spacing:.02em;
+      box-shadow:0 6px 36px rgba(217,137,91,.6);
+      animation:pbtn 2.2s ease-in-out infinite;
+      border:none;cursor:pointer;
+    }
+    @keyframes pbtn{0%,100%{box-shadow:0 6px 36px rgba(217,137,91,.6)}50%{box-shadow:0 6px 70px rgba(217,137,91,.95),0 0 100px rgba(217,137,91,.3)}}
+    .btn:hover{transform:translateY(-4px) scale(1.03);}
+    .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.22),transparent);opacity:0;transition:opacity .3s;}
+    .btn:hover::after{opacity:1;}
+    .btn-dark{background:var(--black);color:var(--cream);box-shadow:0 6px 36px rgba(13,13,13,.38);animation:none;}
+    .btn-dark:hover{box-shadow:0 6px 52px rgba(13,13,13,.55);}
+    .btn-salmon{background:var(--black);color:var(--cream);box-shadow:0 6px 36px rgba(13,13,13,.3);animation:none;}
+    .btn-salmon:hover{box-shadow:0 6px 52px rgba(13,13,13,.5);}
+    .btn-wide{width:100%;display:block;text-align:center;padding:19px 44px;font-size:1.05rem;}
+    .hero-micro{font-size:.73rem;color:rgba(248,232,216,.35);margin-top:12px;}
+    .hero-mini-stat{display:inline-flex;align-items:center;gap:10px;background:rgba(217,137,91,.15);border:1px solid rgba(217,137,91,.35);border-radius:50px;padding:8px 20px;margin-bottom:22px;opacity:0;animation:fiu .7s .62s forwards;}
+    .hero-mini-number{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--brown);}
+    .hero-mini-label{font-size:.75rem;color:rgba(248,232,216,.65);letter-spacing:.08em;text-transform:uppercase;}
+
+    /* ── HERO RIGHT (video) ── */
+    .hero-right{
+      position:relative;z-index:2;
+      padding:80px 70px 80px 20px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .hero-video-wrap{
+      width:100%;max-width:480px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 24px 80px rgba(0,0,0,.6);
+      border:1px solid rgba(217,137,91,.25);
+      opacity:0;animation:fsl .8s .6s forwards;
+      position:relative;
+    }
+    .hero-video-wrap::before{
+      content:'';display:block;padding-top:56.25%;
+    }
+    .hero-video-wrap iframe{
+      position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+    }
+    @keyframes fsl{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes fiu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── WAVE ── */
+    .wave{width:100%;overflow:hidden;line-height:0;margin:-1px 0;}
+    .wave svg{display:block;}
+
+    /* ── SHARED ── */
+    section{padding:90px 40px;}
+    .cont{max-width:1100px;margin:0 auto;}
+    .tag{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px;}
+    .ttl{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4.5vw,3.4rem);font-weight:800;line-height:1.15;margin-bottom:15px;}
+    .sub{font-size:.98rem;max-width:575px;line-height:1.75;margin-bottom:52px;}
+    .tc{text-align:center;} .tc .sub{margin-left:auto;margin-right:auto;}
+
+    /* ── PAIN (#F28B66 bg) ── */
+    .pain{background:#F28B66;}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(278px,1fr));gap:20px;align-items:stretch;}
+    .pcard{
+      background:#fff;
+      border:1px solid rgba(13,13,13,.08);
+      border-radius:20px;padding:34px 28px;
+      transition:transform .35s,box-shadow .35s;
+      position:relative;overflow:hidden;
+      display:flex;flex-direction:column;align-items:center;
+    }
+    .picon{height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+    .picon img{height:52px;width:auto;object-fit:contain;}
+    .picon svg{height:40px;width:auto;}
+    .pcard h3{text-align:center;}
+    .pcard p{text-align:center;}
+    .pcard::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--brown),var(--salmon));
+      transform:scaleX(0);transition:transform .35s;transform-origin:left;
+    }
+    .pcard:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(13,13,13,.14);}
+    .pcard:hover::after{transform:scaleX(1);}
+    .picon{font-size:2rem;margin-bottom:14px;display:block;}
+    .pcard h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:10px;color:var(--brown);}
+    .pcard p{font-size:.88rem;color:rgba(13,13,13,.62);line-height:1.72;}
+
+    /* ── DIFF (#D9895B bg) ── */
+    .diff{background:var(--brown);}
+    .dlist{list-style:none;display:flex;flex-direction:column;gap:14px;}
+    .dlist li{display:flex;align-items:flex-start;gap:13px;font-size:.93rem;color:var(--black);line-height:1.65;}
+    .dlist li strong{font-weight:700;}
+    .dlist li em{font-style:italic;color:var(--cream);font-weight:600;}
+
+    .dck{width:26px;height:26px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+    .dck svg{width:13px;height:13px;}
+    .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1060px;margin:0 auto;}
+    .diff-video-wrap{
+      width:100%;max-width:340px;margin:0 auto;
+      border-radius:20px;overflow:hidden;
+      box-shadow:0 20px 60px rgba(13,13,13,.25);
+      border:1px solid rgba(13,13,13,.15);
+      position:relative;
+    }
+    .diff-video-wrap::before{content:'';display:block;padding-top:177.78%;} /* 9:16 */
+    .diff-video-wrap iframe,
+    .diff-video-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover;}
+
+    /* ── GALLERY (#F8E8D8 bg) ── */
+    .gallery{background:var(--cream);}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:13px;}
+    .photo-item{border-radius:14px;overflow:hidden;aspect-ratio:3/4;position:relative;}
+    .photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+    .photo-item:hover img{transform:scale(1.06);}
+    .photo-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(217,137,91,.45),transparent 55%);opacity:0;transition:opacity .35s;}
+    .photo-item:hover::after{opacity:1;}
+
+    /* ── MODULES (#D9895B bg) ── */
+    .mods{background:var(--brown);}
+    .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:15px;}
+    .mc{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:13px;padding:22px 20px;display:flex;align-items:flex-start;gap:16px;transition:background .3s,transform .3s,border-color .3s;}
+    .mc:hover{background:rgba(255,255,255,.32);border-color:rgba(255,255,255,.5);transform:translateX(5px);}
+    .mn{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:800;color:rgba(13,13,13,.18);line-height:1;min-width:44px;flex-shrink:0;transition:color .3s;}
+    .mc:hover .mn{color:rgba(13,13,13,.5);}
+    .mi h4{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin-bottom:4px;color:var(--black);}
+    .mi p{font-size:.79rem;color:rgba(13,13,13,.55);line-height:1.5;}
+    .bonus{background:rgba(13,13,13,.1);border:1px solid rgba(13,13,13,.2)!important;}
+    .bbadge{background:var(--black);color:var(--cream);font-size:.6rem;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:20px;text-transform:uppercase;margin-left:6px;}
+
+    /* ── VIDEOS (#D9895B bg) ── */
+    .vids{background:var(--brown);}
+    .vids-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;}
+    .vid-item{border-radius:18px;overflow:hidden;box-shadow:0 16px 48px rgba(13,13,13,.22);}
+    .vid-wrap{position:relative;width:100%;padding-top:177.78%;background:#000;border-radius:18px;overflow:hidden;}
+    .vid-wrap iframe,
+    .vid-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover;}
+    @media(max-width:768px){.vids-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto;}}
+
+    /* ── BENEFITS (#F28B66 bg) ── */
+    .bens{background:#F28B66;}
+    .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:22px;}
+    .bi{display:flex;align-items:flex-start;gap:13px;}
+    .bck{width:32px;height:32px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .bck svg{width:15px;height:15px;}
+    .bi h4{font-size:.95rem;font-weight:600;color:var(--black);margin-bottom:3px;}
+    .bi p{font-size:.8rem;color:rgba(13,13,13,.6);line-height:1.5;}
+
+    /* ── TESTIMONIALS (#F8E8D8 bg) ── */
+    .tms{background:var(--cream);overflow:hidden;}
+    .tcar{position:relative;max-width:880px;margin:0 auto;}
+    .ttrk{display:flex;transition:transform .65s cubic-bezier(.25,.46,.45,.94);}
+    .tc2{min-width:100%;padding:46px 54px;background:#fff;border:1px solid rgba(217,137,91,.22);border-radius:22px;position:relative;box-shadow:0 8px 40px rgba(217,137,91,.1);}
+    .tc2::before{content:'\201C';position:absolute;top:10px;left:30px;font-family:'Playfair Display',serif;font-size:7rem;color:rgba(217,137,91,.15);line-height:1;pointer-events:none;}
+    .ttext{font-family:'Playfair Display',serif;font-size:clamp(.9rem,2vw,1.18rem);font-style:italic;line-height:1.82;margin-bottom:28px;position:relative;z-index:1;color:var(--black);}
+    .tau{display:flex;align-items:center;gap:13px;}
+    .tav{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#D9895B,#F28B66);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--black);flex-shrink:0;}
+    .tan{font-weight:700;font-size:.9rem;color:var(--black);}
+    .tat{font-size:.74rem;color:var(--brown);margin-top:1px;}
+    .tst{color:var(--brown);font-size:1rem;margin-bottom:16px;letter-spacing:.08em;}
+    .cdots{display:flex;justify-content:center;gap:9px;margin-top:22px;}
+    .cdot{width:8px;height:8px;border-radius:50%;background:rgba(217,137,91,.28);border:none;cursor:pointer;transition:all .3s;}
+    .cdot.on{background:var(--brown);transform:scale(1.4);}
+    .cnav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(217,137,91,.15);border:1px solid rgba(217,137,91,.32);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--brown);font-size:1.3rem;transition:background .3s;z-index:10;}
+    .cnav:hover{background:rgba(217,137,91,.3);}
+    .cp{left:-62px;} .cn{right:-62px;}
+
+    /* ── FEEDBACKS (#D9895B bg) ── */
+    .feeds{background:var(--brown);}
+    .feed-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:16px;
+      align-items:start;
+    }
+    /* img 1 → col1 row1, img 2 → col2 row1, img 3 → col3 rows 1+2 */
+    .feed-item:nth-child(1){ grid-column:1; grid-row:1; }
+    .feed-item:nth-child(2){ grid-column:2; grid-row:1; }
+    .feed-item:nth-child(3){ grid-column:3; grid-row:1 / 3; }
+    .feed-item:nth-child(4){ grid-column:1; grid-row:2; }
+    .feed-item:nth-child(5){ grid-column:2; grid-row:2; }
+
+    .feed-item{border-radius:15px;overflow:hidden;box-shadow:0 8px 28px rgba(13,13,13,.18);}
+    .feed-item img{width:100%;height:100%;object-fit:cover;display:block;}
+    .feed-item:nth-child(3) img{height:100%;}
+    /* text card */
+    .feed-text{
+      background:#fff;
+      border-radius:15px;
+      padding:22px 26px;
+      box-shadow:0 8px 28px rgba(13,13,13,.15);
+    }
+    .ft-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+    .ft-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#405DE6,#5B51D8,#833AB4,#C13584,#E1306C,#FD1D1D,#F56040,#F77737,#FCAF45,#FFDC80);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0;}
+    .ft-user{font-weight:700;font-size:.88rem;color:var(--black);}
+    .ft-platform{font-size:.7rem;color:rgba(13,13,13,.4);margin-top:1px;display:flex;align-items:center;gap:4px;}
+    .ft-platform svg{width:12px;height:12px;}
+    .ft-text{font-size:.93rem;color:rgba(13,13,13,.78);line-height:1.72;}
+    .ft-footer{display:flex;align-items:center;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(13,13,13,.07);}
+    .ft-heart{color:#e0245e;font-size:.95rem;}
+    .ft-likes{font-size:.78rem;color:rgba(13,13,13,.4);}
+    @media(max-width:768px){
+      .feed-grid{grid-template-columns:1fr;}
+    }
+
+    /* ── COUNTDOWN (#F28B66 bg) ── */
+    .cds{padding:60px 40px;background:#F28B66;text-align:center;}
+    .cdlbl{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--black);margin-bottom:20px;opacity:.7;}
+    .cdt{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;align-items:center;}
+    .cdu{text-align:center;}
+    .cdv{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:800;display:block;background:rgba(13,13,13,.12);border:1px solid rgba(13,13,13,.18);border-radius:12px;padding:13px 20px;min-width:78px;line-height:1;color:var(--black);}
+    .cdul{font-size:.65rem;color:rgba(13,13,13,.55);letter-spacing:.14em;text-transform:uppercase;margin-top:6px;}
+    .cdsep{font-family:'Playfair Display',serif;font-size:2.8rem;color:rgba(13,13,13,.5);padding-top:12px;line-height:1;}
+
+    /* ── PRICING (#F8E8D8 bg) ── */
+    .prc{background:var(--cream);}
+    .pcard-wrap{max-width:555px;margin:0 auto;position:relative;}
+    .pcard-wrap::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#D9895B,#F28B66,#D9895B,#b5663a,#D9895B);background-size:400%;border-radius:30px;z-index:0;animation:bspin 4.5s linear infinite;}
+    @keyframes bspin{to{background-position:400% 0}}
+    .pcard{position:relative;z-index:1;background:#fff;border-radius:28px;padding:50px 44px;}
+    .plbl{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);margin-bottom:5px;}
+    .ptit{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;margin-bottom:24px;color:var(--black);}
+    .pori{font-size:.9rem;color:rgba(13,13,13,.32);text-decoration:line-through;margin-bottom:5px;}
+    .pmain{font-family:'Playfair Display',serif;font-size:3.9rem;font-weight:900;line-height:1;margin-bottom:5px;color:var(--black);}
+    .pmain em{font-style:normal;color:var(--brown);}
+    .pins{font-size:.85rem;color:rgba(13,13,13,.48);margin-bottom:32px;}
+    .pincs{text-align:left;margin-bottom:32px;}
+    .pitem{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(217,137,91,.14);font-size:.86rem;color:rgba(13,13,13,.8);}
+    .pitem:last-child{border-bottom:none;}
+    .pico{color:var(--brown);}
+    .guar{margin-top:24px;display:flex;align-items:center;gap:12px;padding:16px;background:rgba(217,137,91,.07);border:1px solid rgba(217,137,91,.22);border-radius:13px;}
+    .gico{font-size:2rem;flex-shrink:0;}
+    .gtxt h4{font-weight:700;font-size:.9rem;color:var(--black);margin-bottom:2px;}
+    .gtxt p{font-size:.75rem;color:rgba(13,13,13,.52);line-height:1.45;}
+
+    /* ── INSTRUCTOR (#D9895B bg) ── */
+    .inst{background:var(--brown);}
+    .igrid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:58px;align-items:center;}
+    .iavl{width:100%;max-width:355px;aspect-ratio:3/4;background:rgba(13,13,13,.1);border-radius:22px;border:1px solid rgba(13,13,13,.18);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .init-txt{font-family:'Playfair Display',serif;font-size:7rem;font-weight:800;color:rgba(13,13,13,.14);}
+    .ivis{position:relative;}
+    .ibdg{position:absolute;bottom:16px;right:-14px;background:var(--black);color:var(--cream);padding:10px 15px;border-radius:10px;font-weight:700;font-size:.78rem;box-shadow:0 8px 22px rgba(13,13,13,.3);}
+    .iin h2{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:800;margin-bottom:5px;color:var(--black);}
+    .itit{color:rgba(13,13,13,.52);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;}
+    .ibio{color:rgba(13,13,13,.68);line-height:1.8;margin-bottom:13px;font-size:.94rem;}
+    .istats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:24px;}
+    .is{text-align:center;padding:13px;background:rgba(13,13,13,.07);border:1px solid rgba(13,13,13,.1);border-radius:10px;}
+    .isn{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--black);display:block;}
+    .isl{font-size:.65rem;color:rgba(13,13,13,.48);text-transform:uppercase;letter-spacing:.1em;}
+
+    /* ── FAQ (#F8E8D8 bg) ── */
+    .faq{background:var(--cream);}
+    .fbox{max-width:775px;margin:0 auto;}
+    .fi{border-bottom:1px solid rgba(217,137,91,.25);}
+    .fq{padding:21px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:.97rem;font-weight:600;gap:20px;transition:color .3s;color:var(--black);}
+    .fq:hover{color:var(--brown);}
+    .fqico{width:25px;height:25px;border-radius:50%;background:rgba(217,137,91,.15);border:1px solid rgba(217,137,91,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--brown);font-size:1rem;transition:all .3s;}
+    .fi.open .fqico{background:var(--brown);color:var(--black);transform:rotate(45deg);}
+    .fa{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.9rem;color:rgba(13,13,13,.6);line-height:1.8;}
+    .fi.open .fa{max-height:260px;padding-bottom:22px;}
+
+    /* ── FINAL CTA (#F28B66 bg) ── */
+    .fcta{background:#F28B66;text-align:center;}
+
+    /* ── FOOTER ── */
+    footer{padding:34px 40px;background:var(--cream);text-align:center;border-top:1px solid rgba(217,137,91,.2);}
+    footer p{font-size:.75rem;color:rgba(13,13,13,.45);margin-bottom:5px;}
+    footer a{color:var(--brown);text-decoration:none;}
+    .footer-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--black);display:inline-block;margin-bottom:12px;letter-spacing:.05em;}
+
+    /* ── SHIMMER TEXT ── */
+    .sh-dark{background:linear-gradient(90deg,#0D0D0D 0%,#5c3010 35%,#0D0D0D 55%,#3a1a05 75%,#0D0D0D);background-size:220% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:tsh 4.5s linear infinite;}
+    .sh-light{background:linear-gradient(90deg,#F8E8D8 0%,#D9895B 35%,#F8E8D8 55%,#F28B66 75%,#F8E8D8);background-size:220% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:tsh 4.5s linear infinite;}
+    @keyframes tsh{to{background-position:220% center}}
+
+    /* ── WHATSAPP ── */
+    .wa{position:fixed;bottom:26px;right:26px;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:1000;transition:transform .3s;text-decoration:none;animation:wap 2.2s ease-in-out infinite;}
+    @keyframes wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 40px rgba(37,211,102,.75)}}
+    .wa:hover{transform:scale(1.1);}
+    .wa svg{width:28px;height:28px;fill:#fff;}
+
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+    .rvl{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
+    .rvr{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease;}
+    .rv.on,.rvl.on,.rvr.on{opacity:1;transform:none;}
+    .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}.d5{transition-delay:.48s}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{display:none;}
+      .hero-left{padding:100px 30px 80px;}
+    }
+    @media(max-width:768px){
+      header{padding:11px 16px;}
+      section{padding:62px 20px;}
+      .tc2{padding:30px 22px;}
+      .tc2::before{font-size:4rem;left:14px;}
+      .cp,.cn{display:none;}
+      .pcard{padding:34px 22px;}
+      .pmain{font-size:3rem;}
+      .igrid{grid-template-columns:1fr;gap:32px;}
+      .iavl{max-width:100%;}
+      .ibdg{right:0;}
+      .diff-grid{grid-template-columns:1fr;gap:32px;}
+      .photo-grid{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="urgency">🔥 Oferta especial encerra em breve. Não perca essa chance!</div>
+
+<header>
+  <div class="logo">FULL BROWS</div>
+  <a href="https://curso.robertabrunassi.com.br/#pricing" class="h-cta">Garantir Minha Vaga →</a>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div id="ptc"></div>
+
+  <!-- decorative arch -->
+  <svg class="hero-arch" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 180 C200 20 500 -10 700 60 C800 90 860 130 885 170" stroke="#D9895B" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <path d="M40 190 C220 35 510 5 705 72 C802 100 860 138 882 175" stroke="#F28B66" stroke-width="8" stroke-linecap="round" fill="none" opacity=".5"/>
+  </svg>
+
+  <!-- LEFT: text -->
+  <div class="hero-left">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      Roberta Brunassi apresenta
+    </div>
+    <h1 class="h1">
+      <span class="sh-light">Reconstrua</span><br>
+      sobrancelhas<br>
+      em <span class="gt">45 dias</span><br>
+      e fature<br>
+      <span class="gt">R$&nbsp;4.000+</span>/mês
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="h-sub">
+      Aprenda o protocolo FULL BROWS: crescimento natural das sobrancelhas em 45 dias. Domine 2 técnicas de fácil aplicação, com baixo investimento e alta lucratividade. Após o curso você estará pronta para aplicar o protocolo imediatamente em suas clientes.
+    </p>
+    <div class="hero-mini-stat rv">
+      <span class="hero-mini-number">+4.000</span>
+      <span class="hero-mini-label">faturamento/mês</span>
+    </div>
+    <div class="hero-cta-group">
+      <a href="https://curso.robertabrunassi.com.br/#pricing" class="btn">Quero garantir minha vaga →</a>
+      <p class="hero-micro">🔒 7 dias de garantia &nbsp;•&nbsp; Acesso imediato &nbsp;•&nbsp; R$ 197,00</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: video -->
+  <div class="hero-right">
+    <div class="hero-video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/qM4XErH2F1U?start=9&rel=0&modestbranding=1"
+        title="Roberta Brunassi — Full Brows"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70Z" fill="#F28B66"/></svg></div>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="cont tc">
+    <span class="tag rv" style="color:rgba(13,13,13,.6)">Você se identifica com isso?</span>
+    <h2 class="ttl rv" style="color:var(--black)">O que está te travando<br><em>de crescer de verdade</em></h2>
+    <p class="sub rv" style="color:rgba(13,13,13,.68)">Muitas profissionais de beleza estagnam usando as mesmas técnicas que o mercado já saturou. Está na hora de mudar o jogo.</p>
+    <div class="pgrid">
+      <div class="pcard rv d1"><span class="picon"><img src="fotos/sobrancelha.png" alt="Sobrancelha"/></span><h3>Mudança de Comportamento das Clientes</h3><p>As clientes estão em busca de procedimentos naturais em suas sobrancelhas. Não querem mais passar pelo incômodo de sobrancelhas artificiais no rosto.</p></div>
+      <div class="pcard rv d2"><span class="picon">📉</span><h3>Resultados Lentos Demais</h3><p>As técnicas convencionais de crescimento de pelos nas sobrancelhas demoram para aparecer os resultados. A técnica Full Brows entrega resultados reais em 45 dias.</p></div>
+      <div class="pcard rv d3"><span class="picon">💸</span><h3>Faturamento Que Só Cai</h3><p>Você continua oferecendo os mesmos procedimentos, mas as clientes estão cada vez mais exigentes em busca de novidades. Se você não oferece novas técnicas, as clientes procuram outra profissional que vai oferecer.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C360,0 1080,70 1440,20 L1440,70Z" fill="#D9895B"/></svg></div>
+
+<!-- DIFF / PROTOCOL -->
+<section class="diff">
+  <div class="cont">
+    <div class="diff-grid">
+      <div class="rvl">
+        <span class="tag" style="color:rgba(13,13,13,.55)">O protocolo em detalhes</span>
+        <h2 class="ttl" style="color:var(--black)">Por que o <span class="sh-dark">FULL BROWS</span><br>é diferente?</h2>
+        <p style="color:rgba(13,13,13,.68);line-height:1.75;margin-bottom:28px;font-size:.95rem;">
+          É o único protocolo que você aprende com duas técnicas diferentes. Com o diagnóstico profissional com ou sem o tricoscópio, entregando resultados visíveis em 45 dias.
+        </p>
+        <ul class="dlist">
+          <li><span class="dck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Resultados em 45 dias com apenas 3 sessões estratégicas</li>
+          <li><span class="dck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Design reconstrutivo valorizando cada pelo da cliente. Um novo conceito de fazer o design das sobrancelhas</li>
+          <li><span class="dck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Você terá acesso à fórmula exclusiva do sérum bioestimulador de pelos Full Brows</li>
+          <li><span class="dck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Método prático para aplicar imediatamente após a conclusão do curso</li>
+          <li><span class="dck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Único protocolo finalizado com o famoso banho de brilho nas sobrancelhas — o toque final que transforma o resultado</li>
+        </ul>
+        <div style="margin-top:32px">
+          <a href="https://curso.robertabrunassi.com.br/#pricing" class="btn btn-dark">Quero Aprender Esse Protocolo →</a>
+        </div>
+      </div>
+      <div class="diff-video-wrap rvr">
+        <video controls playsinline>
+          <source src="videos/vid_feedback_02-Bbo-gHCO.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C480,70 960,0 1440,55 L1440,70 L0,70Z" fill="#F8E8D8"/></svg></div>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:44px">
+      <span class="tag rv" style="color:var(--brown)">Resultados reais das clientes</span>
+      <h2 class="ttl rv" style="color:var(--black)">Transformações que<br><span class="sh-dark">falam por si mesmas</span></h2>
+      <p class="sub rv" style="color:rgba(13,13,13,.62)">Cada foto é uma prova de que o protocolo FULL BROWS entrega resultados reais, consistentes e encantadores.</p>
+    </div>
+    <div class="photo-grid">
+      <div class="photo-item rv d1"><img src="https://curso.robertabrunassi.com.br/assets/img_01-CGCE9uYo.jpeg" alt="Resultado 1" loading="lazy"/></div>
+      <div class="photo-item rv d2"><img src="https://curso.robertabrunassi.com.br/assets/img_02-dOA8O8cH.jpg" alt="Resultado 2" loading="lazy"/></div>
+      <div class="photo-item rv d3"><img src="https://curso.robertabrunassi.com.br/assets/img_03-ycYH1BvK.jpeg" alt="Resultado 3" loading="lazy"/></div>
+      <div class="photo-item rv d4"><img src="https://curso.robertabrunassi.com.br/assets/img_04-RCgEfXd6.jpeg" alt="Resultado 4" loading="lazy"/></div>
+      <div class="photo-item rv d1"><img src="https://curso.robertabrunassi.com.br/assets/img_05-2vuJP7tS.jpeg" alt="Resultado 5" loading="lazy"/></div>
+      <div class="photo-item rv d2"><img src="https://curso.robertabrunassi.com.br/assets/img_06-dDz41PlU.jpeg" alt="Resultado 6" loading="lazy"/></div>
+      <div class="photo-item rv d3"><img src="https://curso.robertabrunassi.com.br/assets/img_07-BdINLltp.jpeg" alt="Resultado 7" loading="lazy"/></div>
+      <div class="photo-item rv d4"><img src="https://curso.robertabrunassi.com.br/assets/img_08-M0IQ4vLE.jpeg" alt="Resultado 8" loading="lazy"/></div>
+      <div class="photo-item rv d1"><img src="https://curso.robertabrunassi.com.br/assets/img_09-CXPyZtaY.jpeg" alt="Resultado 9" loading="lazy"/></div>
+      <div class="photo-item rv d2"><img src="https://curso.robertabrunassi.com.br/assets/img_10-CAsHUfRe.jpeg" alt="Resultado 10" loading="lazy"/></div>
+    </div>
+    <div class="tc" style="margin-top:44px">
+      <a href="https://curso.robertabrunassi.com.br/#pricing" class="btn rv">Quero Entregar Esses Resultados →</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C480,0 960,70 1440,10 L1440,70Z" fill="#D9895B"/></svg></div>
+
+<!-- VIDEOS -->
+<section class="vids">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:48px">
+      <span class="tag rv" style="color:rgba(13,13,13,.55)">Veja na prática</span>
+      <h2 class="ttl rv" style="color:var(--black)">Resultados que <span class="sh-dark">encantam</span></h2>
+    </div>
+    <div class="vids-grid">
+      <!-- YouTube Shorts -->
+      <div class="vid-item rv d1">
+        <div class="vid-wrap">
+          <iframe src="https://www.youtube.com/embed/UmO4H-twmEk?rel=0&modestbranding=1"
+            title="Crescimento dos pêlos em 45 dias FULL BROWS"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <!-- vídeo local 1 -->
+      <div class="vid-item rv d2">
+        <div class="vid-wrap">
+          <video controls playsinline>
+            <source src="videos/vid_feedback_01-EPpClI40.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- vídeo local 2 -->
+      <div class="vid-item rv d3">
+        <div class="vid-wrap">
+          <video controls playsinline>
+            <source src="videos/vid_feedback_04-DmF_s3B8.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C360,70 1080,0 1440,60 L1440,70 L0,70Z" fill="#F28B66"/></svg></div>
+
+<!-- BENEFITS -->
+<section class="bens">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:48px">
+      <span class="tag rv" style="color:rgba(13,13,13,.58)">Tudo que você recebe</span>
+      <h2 class="ttl rv" style="color:var(--black)">Cada detalhe pensado<br>para o <span class="sh-dark">seu sucesso</span></h2>
+    </div>
+    <div class="bgrid">
+      <div class="bi rv d1"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>BÔNUS Aula 1: Banho de brilho</h4><p>Você pode oferecer apenas o banho de brilho às suas clientes e faturar muito com ela</p></div></div>
+      <div class="bi rv d2"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Sérum Full Brows</h4><p>Fórmula exclusiva do sérum bioestimulador de pelos</p></div></div>
+      <div class="bi rv d3"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Resultados em 45 dias — 3 sessões</h4><p>Protocolo validado com centenas de clientes reais</p></div></div>
+      <div class="bi rv d1"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Certificado Full Brows</h4><p>Você vai poder baixar seu certificado digital disponível em PDF</p></div></div>
+      <div class="bi rv d2"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>BÔNUS Aula 2: Design reconstrutivo finalizado com banho de brilho nas sobrancelhas</h4><p>Você vai aprender um novo conceito de fazer o design das sobrancelhas das suas clientes e finalizar com banho de brilho</p></div></div>
+      <div class="bi rv d3"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>12 meses de acesso completo</h4><p>Assista quando e quantas vezes quiser, no seu ritmo</p></div></div>
+      <div class="bi rv d1"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Suporte premium via WhatsApp</h4><p>Tire dúvidas diretamente com a equipe da Roberta</p></div></div>
+      <div class="bi rv d2"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Apostila completa do curso Full Brows</h4><p>Você terá acesso à nossa apostila completa em PDF com todos os passo a passo, fórmulas dos produtos e materiais utilizados para a realização do Full Brows</p></div></div>
+      <div class="bi rv d3"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>BÔNUS Aula 3: Design reconstrutivo finalizado com lápis dermatográfico</h4><p>Você vai se aprofundar mais no design reconstrutivo e saber finalizar usando um lápis dermatográfico nas suas clientes quando te procurarem para fazer seu design mensal</p></div></div>
+      <div class="bi rv d1"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Checklist Full Brows</h4><p>Você vai ter acesso a um guia para facilitar a avaliação durante a tricoscopia da sua cliente</p></div></div>
+      <div class="bi rv d2"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Ficha de Anamnese Full Brows</h4><p>Você vai ter acesso à ficha de anamnese exclusiva para o procedimento Full Brows, pronta para ser usada</p></div></div>
+      <div class="bi rv d3"><div class="bck"><svg viewBox="0 0 24 24" fill="none" stroke="#F8E8D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Manual da Especialista Full Brows</h4><p>Você vai ter acesso a um manual com o mapa da jornada durante todo o curso, mural de compromisso imperativo e glossário</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C480,0 960,70 1440,15 L1440,70Z" fill="#F8E8D8"/></svg></div>
+
+<!-- TESTIMONIALS -->
+<section class="tms">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:48px">
+      <span class="tag rv" style="color:var(--brown)">Resultados reais</span>
+      <h2 class="ttl rv" style="color:var(--black)">O que dizem as alunas que<br><span class="sh-dark">transformaram suas carreiras</span></h2>
+    </div>
+    <div class="tcar rv">
+      <div class="ttrk" id="ttrk">
+        <div class="tc2">
+          <div class="tst">★★★★★</div>
+          <p class="ttext">"Eu estava desanimada com a minha profissão porque as clientes não queriam fazer mais micropigmentação. Foi aí que comprei o curso Full Brows e consegui conquistar minhas clientes novamente oferecendo tratamento para crescer os pelos delas. Super indico!"</p>
+          <div class="tau"><div class="tav">AC</div><div><div class="tan">Ana Clara Rodrigues</div><div class="tat">Brow Artist — São Paulo, SP</div></div></div>
+        </div>
+        <div class="tc2">
+          <div class="tst">★★★★★</div>
+          <p class="ttext">"Além de aprender a técnica Full Brows, aprendi a fazer o banho de brilho e também o design reconstrutivo. Um curso que me trouxe mais essas técnicas para agregar aqui na minha região."</p>
+          <div class="tau"><div class="tav">FS</div><div><div class="tan">Fernanda Souza</div><div class="tat">Esteticista e Brow Artist — Belo Horizonte, MG</div></div></div>
+        </div>
+        <div class="tc2">
+          <div class="tst">★★★★★</div>
+          <p class="ttext">"A organização dos materiais é impecável, sem falar nas aulas que são muito bem explicadas."</p>
+          <div class="tau"><div class="tav">JM</div><div><div class="tan">Juliana Matos</div><div class="tat">Designer de Sobrancelhas — Curitiba, PR</div></div></div>
+        </div>
+      </div>
+      <button class="cnav cp" id="cprev">‹</button>
+      <button class="cnav cn" id="cnext">›</button>
+    </div>
+    <div class="cdots">
+      <button class="cdot on" data-i="0"></button>
+      <button class="cdot" data-i="1"></button>
+      <button class="cdot" data-i="2"></button>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACKS -->
+<section class="feeds">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:40px">
+
+      <h2 class="ttl rv" style="color:var(--black)">Feedbacks <span class="sh-dark">reais</span></h2>
+    </div>
+    <div class="feed-grid">
+      <div class="feed-item rv d1"><img src="https://curso.robertabrunassi.com.br/assets/img_feedbacks_01-BX4gXfhn.jpeg" alt="Feedback 1" loading="lazy"/></div>
+      <div class="feed-item rv d2"><img src="https://curso.robertabrunassi.com.br/assets/img_feedbacks_02-0iWuvNCw.jpeg" alt="Feedback 2" loading="lazy"/></div>
+      <div class="feed-item rv d3"><img src="https://curso.robertabrunassi.com.br/assets/img_feedbacks_03-BAMcDP_C.jpeg" alt="Feedback 3" loading="lazy"/></div>
+      <div class="feed-item rv d1"><img src="fotos/alunaroberta3.png" alt="Aluna Roberta" loading="lazy"/></div>
+      <div class="feed-item rv d2"><img src="fotos/alunarobertab2.png" alt="Aluna Roberta" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="cds">
+  <p class="cdlbl">⚡ Oferta especial encerra em</p>
+  <div class="cdt">
+    <div class="cdu"><span class="cdv" id="cdh">23</span><span class="cdul">Horas</span></div>
+    <span class="cdsep">:</span>
+    <div class="cdu"><span class="cdv" id="cdm">59</span><span class="cdul">Minutos</span></div>
+    <span class="cdsep">:</span>
+    <div class="cdu"><span class="cdv" id="cds2">59</span><span class="cdul">Segundos</span></div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C360,0 1080,70 1440,20 L1440,70Z" fill="#F8E8D8"/></svg></div>
+
+<!-- PRICING -->
+<section class="prc" id="pricing">
+  <div class="cont tc">
+    <span class="tag rv" style="color:var(--brown)">Investimento</span>
+    <h2 class="ttl rv" style="color:var(--black);margin-bottom:46px">Tudo isso por apenas<br><span class="sh-dark">uma fração do valor real</span></h2>
+    <div class="pcard-wrap rv">
+      <div class="pcard">
+        <div class="plbl">Acesso Completo — Oferta Especial</div>
+        <div class="ptit">Curso Full Brows</div>
+        <div class="pori">De R$ 1.297,00</div>
+        <div class="pmain">R$ <em>197</em><span style="font-size:2rem;font-family:'Playfair Display',serif;font-weight:700">,00</span></div>
+        <div class="pins">ou 12x de R$ 20,37 sem juros</div>
+        <div class="pincs">
+          <div class="pitem"><span class="pico">✦</span> 16 módulos completos de conteúdo</div>
+          <div class="pitem"><span class="pico">✦</span> 2 Técnicas: dermógrafo ou tebori</div>
+          <div class="pitem"><span class="pico">✦</span> Fórmula exclusiva do sérum bioestimulador de pelos Full Brows</div>
+          <div class="pitem"><span class="pico">✦</span> BÔNUS 1: Curso de Banho de brilho nas sobrancelhas</div>
+          <div class="pitem"><span class="pico">✦</span> BÔNUS 2: Curso de design reconstrutivo finalizado com banho de brilho nas sobrancelhas</div>
+          <div class="pitem"><span class="pico">✦</span> BÔNUS 3: Curso de design reconstrutivo finalizado com lápis dermatográfico</div>
+          <div class="pitem"><span class="pico">✦</span> 12 meses de acesso completo</div>
+          <div class="pitem"><span class="pico">✦</span> Suporte premium via WhatsApp</div>
+          <div class="pitem"><span class="pico">✦</span> Videoaulas em alta resolução</div>
+        </div>
+        <a href="https://curso.robertabrunassi.com.br/#pricing" class="btn btn-wide">Quero Garantir Minha Vaga Agora →</a>
+        <div class="guar">
+          <span class="gico">🛡️</span>
+          <div class="gtxt">
+            <h4>Garantia Incondicional de 7 Dias</h4>
+            <p>Se por qualquer motivo você não ficar 100% satisfeita, devolvemos seu investimento integralmente. Sem perguntas, sem burocracia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C360,70 1080,0 1440,55 L1440,70 L0,70Z" fill="#D9895B"/></svg></div>
+
+<!-- INSTRUCTOR -->
+<section class="inst">
+  <div class="cont">
+    <div class="igrid">
+      <div class="ivis rvl">
+        <div class="iavl"><img src="fotos/robertabrunassi.jpeg" alt="Roberta Brunassi" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ibdg">+500 alunas formadas</div>
+      </div>
+      <div class="iin rvr">
+        <div class="itit">Sua mentora</div>
+        <h2>Roberta Brunassi</h2>
+        <p class="ibio">Especialista em reconstrução e design de sobrancelhas com mais de 11 anos de experiência, Roberta desenvolveu o protocolo Full Brows após anos de pesquisa e centenas de horas de atendimento com as clientes mais exigentes do mercado.</p>
+        <p class="ibio">Seu método exclusivo de microcanais combina ciência capilar avançada com estratégias de negócios para transformar não só as sobrancelhas das clientes, mas a carreira e o faturamento das profissionais que ela forma.</p>
+        <div class="istats">
+          <div class="is"><span class="isn">500+</span><span class="isl">Alunas</span></div>
+          <div class="is"><span class="isn">5000+</span><span class="isl">Atendimentos</span></div>
+          <div class="is"><span class="isn">11+</span><span class="isl">Anos exp.</span></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,70 C480,0 960,70 1440,20 L1440,70Z" fill="#F8E8D8"/></svg></div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="cont">
+    <div class="tc" style="margin-bottom:46px">
+      <span class="tag rv" style="color:var(--brown)">Dúvidas frequentes</span>
+      <h2 class="ttl rv" style="color:var(--black)">Respostas para suas<br><span class="sh-dark">principais perguntas</span></h2>
+    </div>
+    <div class="fbox rv">
+      <div class="fi"><div class="fq" onclick="tfaq(this)"><span>Preciso ter experiência prévia com sobrancelhas?</span><span class="fqico">+</span></div><div class="fa">Não é necessário ter experiência na área. O curso começa pelos fundamentos e avança progressivamente. Tanto iniciantes quanto profissionais experientes têm transformado seus resultados com o protocolo Full Brows. A técnica é simples e prática, porém é necessário que a profissional aplique exatamente da forma como as técnicas foram ensinadas.</div></div>
+      <div class="fi"><div class="fq" onclick="tfaq(this)"><span>Preciso de equipamentos especiais para aplicar a técnica?</span><span class="fqico">+</span></div><div class="fa">Você vai precisar apenas de um dermógrafo ou de um tebori para executar os microcanais nas sobrancelhas.</div></div>
+      <div class="fi"><div class="fq" onclick="tfaq(this)"><span>Como funciona o suporte durante o curso?</span><span class="fqico">+</span></div><div class="fa">Você terá acesso ao suporte premium via WhatsApp com a equipe da Roberta para tirar dúvidas sobre técnica e aplicação.</div></div>
+      <div class="fi"><div class="fq" onclick="tfaq(this)"><span>Como faço para ter acesso ao sérum Full Brows?</span><span class="fqico">+</span></div><div class="fa">Você vai ter a fórmula exclusiva do sérum para poder manipular na farmácia de sua preferência.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70Z" fill="#F28B66"/></svg></div>
+
+<!-- FINAL CTA -->
+<section class="fcta">
+  <div class="cont tc">
+    <span class="tag rv" style="color:rgba(13,13,13,.55)">Não perca essa oportunidade</span>
+    <h2 class="ttl rv" style="max-width:680px;margin:0 auto 15px;color:var(--black)">Sua transformação começa<br>com <span class="sh-dark">uma decisão</span></h2>
+    <p class="sub rv" style="color:rgba(13,13,13,.68)">Enquanto você lê isso, outras profissionais já estão transformando suas carreiras com o Full Brows. Não fique para trás.</p>
+    <div class="rv">
+      <a href="https://curso.robertabrunassi.com.br/#pricing" class="btn" style="font-size:1.1rem;padding:19px 52px;background:var(--cream);color:var(--black);box-shadow:0 6px 36px rgba(13,13,13,.18);animation:none;">Quero Garantir Minha Vaga Agora →</a>
+      <p style="margin-top:13px;color:rgba(13,13,13,.42);font-size:.74rem">🔒 Pagamento 100% seguro &nbsp;•&nbsp; 🛡️ Garantia de 7 dias &nbsp;•&nbsp; ⚡ Acesso imediato</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FULL BROWS</div>
+  <p>© 2026 Roberta Brunassi. Todos os direitos reservados.</p>
+  <p><a href="#">Política de Privacidade</a> &nbsp;•&nbsp; <a href="#">Termos de Uso</a> &nbsp;•&nbsp; <a href="#">Contato</a></p>
+</footer>
+
+<a href="https://wa.me/5543984079830" class="wa" target="_blank" rel="noopener" aria-label="Fale no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+
+// Particles
+const ptc=document.getElementById('ptc');
+for(let i=0;i<50;i++){const p=document.createElement('div');p.className='pt';const s=2+Math.random()*4;p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;background:${Math.random()>.5?'#D9895B':'#F28B66'};--d:${7+Math.random()*11}s;--dl:${Math.random()*14}s;`;ptc.appendChild(p);}
+
+// Scroll Reveal
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>obs.observe(el));
+
+// Carousel
+const trk=document.getElementById('ttrk'),dots=document.querySelectorAll('.cdot');
+let ci=0;
+function go(n){ci=(n+3)%3;trk.style.transform=`translateX(-${ci*100}%)`;dots.forEach((d,i)=>d.classList.toggle('on',i===ci));}
+document.getElementById('cprev').onclick=()=>go(ci-1);
+document.getElementById('cnext').onclick=()=>go(ci+1);
+dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+setInterval(()=>go(ci+1),6200);
+
+// Countdown
+(function(){const K='fb_cd';let end=+localStorage.getItem(K)||0;if(Date.now()>end){end=Date.now()+24*3600000;localStorage.setItem(K,end);}function u(){const r=end-Date.now();if(r<=0){localStorage.removeItem(K);location.reload();return;}const h=Math.floor(r/3600000),m=Math.floor((r%3600000)/60000),s=Math.floor((r%60000)/1000);document.getElementById('cdh').textContent=String(h).padStart(2,'0');document.getElementById('cdm').textContent=String(m).padStart(2,'0');document.getElementById('cds2').textContent=String(s).padStart(2,'0');}u();setInterval(u,1000);})();
+
+// FAQ
+function tfaq(el){const fi=el.parentElement,open=fi.classList.contains('open');document.querySelectorAll('.fi').forEach(f=>f.classList.remove('open'));if(!open)fi.classList.add('open');}
+
+// Ripple
+document.querySelectorAll('.btn').forEach(b=>{b.addEventListener('click',function(e){const r=document.createElement('span'),rc=this.getBoundingClientRect(),sz=Math.max(rc.width,rc.height);r.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;left:${e.clientX-rc.left-sz/2}px;top:${e.clientY-rc.top-sz/2}px;background:rgba(255,255,255,.22);border-radius:50%;transform:scale(0);animation:rpl .6s ease-out forwards;pointer-events:none;`;this.appendChild(r);setTimeout(()=>r.remove(),600);});});
+const rs=document.createElement('style');rs.textContent='@keyframes rpl{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(rs);
+</script>
+</body>
+</html>
