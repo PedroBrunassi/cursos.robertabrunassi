@@ -401,8 +401,14 @@
 
     @media(max-width:900px){
       .hero{grid-template-columns:1fr;}
-      .hero-right{display:none;}
-      .hero-left{padding:100px 30px 80px;}
+      .hero-right{
+        display:flex;
+        padding:0 24px 60px;
+        justify-content:center;
+      }
+      .hero-video-wrap{max-width:100%;}
+      .hero-left{padding:100px 24px 40px;}
+      .h1{font-size:clamp(2rem,8vw,3.2rem);}
     }
     @media(max-width:768px){
       header{padding:11px 16px;}
@@ -417,6 +423,10 @@
       .ibdg{right:0;}
       .diff-grid{grid-template-columns:1fr;gap:32px;}
       .photo-grid{grid-template-columns:repeat(2,1fr);}
+      .h1{font-size:clamp(1.8rem,7vw,2.8rem);}
+      .hero-left{padding:90px 20px 32px;}
+      .hero-right{padding:0 20px 50px;}
+      .hero-mini-stat{flex-wrap:wrap;}
     }
   </style>
 </head>
