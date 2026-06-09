@@ -314,7 +314,13 @@
     .ft-heart{color:#e0245e;font-size:.95rem;}
     .ft-likes{font-size:.78rem;color:rgba(13,13,13,.4);}
     @media(max-width:768px){
-      .feed-grid{grid-template-columns:1fr;}
+      .feed-grid{grid-template-columns:1fr;gap:12px;}
+      .feed-item:nth-child(1),.feed-item:nth-child(2),.feed-item:nth-child(3),.feed-item:nth-child(4),.feed-item:nth-child(5){
+        grid-column:1;
+        grid-row:auto;
+      }
+      .feed-item{min-height:unset;}
+      .feed-item img{height:auto;width:100%;}
     }
 
     /* ── COUNTDOWN (#F28B66 bg) ── */
