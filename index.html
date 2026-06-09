@@ -15,8 +15,8 @@
       --darkbr:#b5663a;
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--brown);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{background:var(--brown);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;max-width:100vw;}
 
 
     /* ── URGENCY ── */
@@ -40,6 +40,7 @@
       align-items:center;
       position:relative;
       overflow:hidden;
+      max-width:100%;
       background:linear-gradient(145deg,#1c0900 0%,#2a1005 25%,#0D0D0D 60%,#100c08 100%);
     }
     /* warm glow blobs */
